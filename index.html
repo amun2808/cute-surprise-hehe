@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Surprise for You!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffd6e8, #e0c3fc, #a1c4fd);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #444;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card {
+      background: #fffafc;
+      color: #d63384;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(214, 51, 132, 0.3);
+      max-width: 90%;
+      display: none;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .card h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 1.3em;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      background-color: #f78fb3;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 30px;
+    }
+
+    .btn:hover {
+      background-color: #e84393;
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: pink;
+      position: absolute;
+      animation: float 6s linear infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .front-img {
+      width: 300px;
+      max-width: 80%;
+      border-radius: 20px;
+      margin-top: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .surprise-img {
+      width: 250px;
+      max-width: 80%;
+      border-radius: 20px;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border: 4px dashed #f78fb3;
+      padding: 10px;
+      background: #fff0f5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- Front Page -->
+  <div id="frontPage">
+    <h1 style="font-size: 2.2em; color: #6c5ce7;">🌸 A Little Surprise Just for You 🌸</h1>
+    <img src="front-image.jpg" alt="Cute Pic" class="front-img">
+    <button class="btn" onclick="showCard()">Open Surprise 💝</button>
+  </div>
+
+  <!-- Surprise Page -->
+  <div class="card" id="surpriseCard">
+    <h1>🌟 CONGRATULATIONS! 🌟</h1>
+    <img src="surprise-image.jpg" alt="You Did It!" class="surprise-img">
+    <p>
+      You totally rocked your 10th grade exams!<br />
+      I'm so proud of you 💫<br />
+      Keep shining like the beautiful star you are 💖<br />
+      You deserve all the happiness and success in the world! ✨🎓🌈
+    </p>
+  </div>
+
+  <script>
+    function showCard() {
+      document.getElementById("frontPage").style.display = "none";
+      document.getElementById("surpriseCard").style.display = "block";
+
+      for (let i = 0; i < 40; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        heart.style.background = `hsl(${Math.random() * 360}, 100%, 85%)`;
+        document.getElementById("hearts").appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+  </script>
+
+</body>
+</html>
